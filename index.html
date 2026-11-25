@@ -336,25 +336,23 @@
 
     /* Cada caso ocupa su propia fila, bien separado */
     .casos-list {
-      display: flex; flex-direction: column;
-      gap: 40px; margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 28px; margin-top: 56px;
     }
 
     .caso-card {
       background: var(--negro-2);
       border: 1px solid var(--borde);
       border-radius: 28px;
-      padding: 28px;
+      padding: 20px;
       transition: border-color 0.3s;
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 32px;
-      align-items: start;
+      display: flex; flex-direction: column;
+      gap: 16px;
     }
     .caso-card:hover { border-color: rgba(26,253,52,0.35); }
 
     .caso-num {
-      grid-column: 1 / -1;
       display: inline-flex; align-items: center; gap: 8px;
       font-family: 'Space Grotesk', sans-serif;
       font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
@@ -377,56 +375,6 @@
       width: 100%; height: 100%;
       object-fit: cover;
       display: block;
-    }
-
-    /* Antes / Después (columna derecha) — imágenes completas y clickeables */
-    .caso-images {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    .caso-img-wrap {
-      position: relative;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #000;
-      border: 1px solid var(--borde);
-      cursor: zoom-in;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .caso-img-wrap:hover { border-color: rgba(26,253,52,0.5); transform: translateY(-3px); }
-    .caso-img-wrap img {
-      width: 100%; height: 420px;
-      object-fit: contain;
-      object-position: top center;
-      display: block;
-      background: #000;
-    }
-    .caso-zoom-hint {
-      position: absolute; top: 10px; right: 10px;
-      width: 30px; height: 30px; border-radius: 50%;
-      background: rgba(10,10,10,0.7); backdrop-filter: blur(4px);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.9rem; opacity: 0; transition: opacity 0.2s;
-      pointer-events: none;
-    }
-    .caso-img-wrap:hover .caso-zoom-hint { opacity: 1; }
-    .caso-label {
-      position: absolute;
-      bottom: 10px; left: 50%; transform: translateX(-50%);
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em;
-      padding: 4px 12px; border-radius: 100px;
-      white-space: nowrap;
-    }
-    .caso-label.antes {
-      background: rgba(10,10,10,0.85);
-      color: var(--gris);
-      border: 1px solid var(--borde);
-    }
-    .caso-label.despues {
-      background: var(--verde);
-      color: var(--negro);
     }
 
     /* ── LIGHTBOX ── */
@@ -603,9 +551,6 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .caso-card { grid-template-columns: 1fr; gap: 20px; }
-      .caso-video-wrap { max-width: 300px; margin: 0 auto; }
-      .caso-img-wrap img { height: 360px; }
     }
 
     @media (max-width: 768px) {
@@ -617,8 +562,6 @@
       footer { flex-direction: column; align-items: flex-start; }
       .hero-ig { flex-direction: column; gap: 12px; }
       .ig-divider { width: 80%; height: 1px; }
-      .caso-images { grid-template-columns: 1fr 1fr; }
-      .caso-img-wrap img { height: 300px; }
     }
   </style>
 </head>
@@ -719,7 +662,7 @@
   <section id="casos">
     <div class="section-tag">Resultados reales</div>
     <h2 class="section-title">Casos de <span class="accent">éxito</span></h2>
-    <p class="section-desc">Perfiles reales que transformamos. Mirá la diferencia antes y después de trabajar con nosotros.</p>
+    <p class="section-desc">Perfiles reales que transformamos. Mirá cómo hablan de su experiencia con nosotros.</p>
 
     <div class="casos-list">
 
@@ -731,18 +674,6 @@
             <source src="casos/2/Video.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="caso-images">
-          <div class="caso-img-wrap">
-            <img src="casos/2/Antes.jpeg" alt="Antes caso 1" loading="lazy" data-zoom>
-            <span class="caso-zoom-hint">🔍</span>
-            <span class="caso-label antes">ANTES</span>
-          </div>
-          <div class="caso-img-wrap">
-            <img src="casos/2/Despues.jpeg" alt="Después caso 1" loading="lazy" data-zoom>
-            <span class="caso-zoom-hint">🔍</span>
-            <span class="caso-label despues">DESPUÉS</span>
-          </div>
-        </div>
       </div>
 
       <!-- CASO 2 -->
@@ -752,18 +683,6 @@
           <video muted loop playsinline controls preload="metadata">
             <source src="casos/3/Video%20referencia%203.mp4" type="video/mp4">
           </video>
-        </div>
-        <div class="caso-images">
-          <div class="caso-img-wrap">
-            <img src="casos/3/perfil%20ANTES%20referencia%203.jpeg" alt="Antes caso 2" loading="lazy" data-zoom>
-            <span class="caso-zoom-hint">🔍</span>
-            <span class="caso-label antes">ANTES</span>
-          </div>
-          <div class="caso-img-wrap">
-            <img src="casos/3/perfil%20DESPUES%20referencia%203.jpeg" alt="Después caso 2" loading="lazy" data-zoom>
-            <span class="caso-zoom-hint">🔍</span>
-            <span class="caso-label despues">DESPUÉS</span>
-          </div>
         </div>
       </div>
 
@@ -775,18 +694,6 @@
             <source src="casos/5/Caso%205%20video.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="caso-images">
-          <div class="caso-img-wrap">
-            <img src="casos/5/Caso%205%20-%20Antes.jpeg" alt="Antes caso 3" loading="lazy" data-zoom>
-            <span class="caso-zoom-hint">🔍</span>
-            <span class="caso-label antes">ANTES</span>
-          </div>
-          <div class="caso-img-wrap">
-            <img src="casos/5/Caso%205%20-%20Despues.jpeg" alt="Después caso 3" loading="lazy" data-zoom>
-            <span class="caso-zoom-hint">🔍</span>
-            <span class="caso-label despues">DESPUÉS</span>
-          </div>
-        </div>
       </div>
 
       <!-- CASO 4 -->
@@ -796,18 +703,6 @@
           <video muted loop playsinline controls preload="metadata">
             <source src="casos/6/WhatsApp%20Video%202026-08-24%20at%2016.03.35.mp4" type="video/mp4">
           </video>
-        </div>
-        <div class="caso-images">
-          <div class="caso-img-wrap">
-            <img src="casos/6/antes.jpeg" alt="Antes caso 4" loading="lazy" data-zoom>
-            <span class="caso-zoom-hint">🔍</span>
-            <span class="caso-label antes">ANTES</span>
-          </div>
-          <div class="caso-img-wrap">
-            <img src="casos/6/despues.jpeg" alt="Después caso 4" loading="lazy" data-zoom>
-            <span class="caso-zoom-hint">🔍</span>
-            <span class="caso-label despues">DESPUÉS</span>
-          </div>
         </div>
       </div>
 
@@ -819,18 +714,6 @@
             <source src="casos/7/Video%20referencia%202.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="caso-images">
-          <div class="caso-img-wrap">
-            <img src="casos/7/Perfil%20ANTES%20referencia%202.jpeg" alt="Antes caso 5" loading="lazy" data-zoom>
-            <span class="caso-zoom-hint">🔍</span>
-            <span class="caso-label antes">ANTES</span>
-          </div>
-          <div class="caso-img-wrap">
-            <img src="casos/7/Perfil%20despues%20referencia%202.jpeg" alt="Después caso 5" loading="lazy" data-zoom>
-            <span class="caso-zoom-hint">🔍</span>
-            <span class="caso-label despues">DESPUÉS</span>
-          </div>
-        </div>
       </div>
 
       <!-- CASO 6 -->
@@ -841,18 +724,6 @@
             <source src="casos/8/video.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="caso-images">
-          <div class="caso-img-wrap">
-            <img src="casos/8/antes.jpeg" alt="Antes caso 6" loading="lazy" data-zoom>
-            <span class="caso-zoom-hint">🔍</span>
-            <span class="caso-label antes">ANTES</span>
-          </div>
-          <div class="caso-img-wrap">
-            <img src="casos/8/despues.jpeg" alt="Después caso 6" loading="lazy" data-zoom>
-            <span class="caso-zoom-hint">🔍</span>
-            <span class="caso-label despues">DESPUÉS</span>
-          </div>
-        </div>
       </div>
 
       <!-- CASO 7 -->
@@ -862,18 +733,6 @@
           <video muted loop playsinline controls preload="metadata">
             <source src="casos/9/Video%20referencia%201.mp4" type="video/mp4">
           </video>
-        </div>
-        <div class="caso-images">
-          <div class="caso-img-wrap">
-            <img src="casos/9/Perfil%20ANTES%20referencia%201.jpeg" alt="Antes caso 7" loading="lazy" data-zoom>
-            <span class="caso-zoom-hint">🔍</span>
-            <span class="caso-label antes">ANTES</span>
-          </div>
-          <div class="caso-img-wrap">
-            <img src="casos/9/perfil%20DESPUES%20referencia%201.jpeg" alt="Después caso 7" loading="lazy" data-zoom>
-            <span class="caso-zoom-hint">🔍</span>
-            <span class="caso-label despues">DESPUÉS</span>
-          </div>
         </div>
       </div>
 
